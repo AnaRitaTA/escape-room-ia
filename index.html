@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESCAPE THE THESIS - PROTOCOLO DE EMERGÊNCIA</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #111827; color: #f3f4f6; }
+        .serif { font-family: 'Merriweather', serif; }
+        .typing-effect::after { content: '|'; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .fade-in { animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        // --- DADOS DO JOGO ---
+        const LEVELS = [
+           {
+    id: 1,
+  
+
+    title: "CAPÍTULO 2: CONCEITOS",
+    docText: `...conforme analisado por Moura & Santos (2019), os Escape Rooms Educativos (ERE) alteram a dinâmica da sala de aula e vão além do simples domínio de conteúdos.
+
+Para além de promover o trabalho em equipa e a liderança, os ERE desenvolvem o ___________ e a comunicação, competências essenciais para a aprendizagem gamificada.`,
+    
+    orientadorNote: `
+
+Usa o NotebookLM para gerar o Áudio Overview do artigo.
+Enquanto o áudio é gerado, analisa o resumo com atenção e pensa sobre estas situações:
+
+1. Que tipo de competências os alunos precisam para encontrar soluções inesperadas aos enigmas?
+2. Que competências permitem aos alunos propor soluções fora do comum para vencer os desafios?
+
+Reflete sobre estas questões e procurar descobrir no resumo dos teus artigos a competência que completa o parágrafo do Capítulo 2.`,
+    
+    reflectionQuestions: [
+        "Que tipo de competências os alunos precisam para encontrar soluções inesperadas aos enigmas?",
+        "Que habilidades permitem aos alunos propor soluções fora do comum nos desafios?"
+    ],
+
+    hint: "A resposta traduzida é 'P_______ C_______'.",
+
+    answers: ["pensamento criativo", "pensamento criativo"]
+
+},
+            {
+                id: 2,
+                title: "CAPÍTULO 3: DADOS ESTATÍSTICOS",
+                docText: `A validação quantitativa é assegurada pela meta-análise de Sailer & Homner (2020), que revelou efeitos variados da gamificação sobre diferentes tipos de resultados de aprendizagem.  
+Para avançar no Capítulo 3, deves analisar cuidadosamente a tabela de dados, comparando categorias, tamanho do efeito, estabilidade e contexto de investigação, de forma a identificar o valor do efeito mais relevante para incluir na lacuna do capítulo.
+
+ ___________ Este valor é a prova estatística que o júri exige.`,
+                orientadorNote: "Para avançar no Capítulo 3, deves criar uma tabela de dados completa usando o artigo de Sailer & Homner (2020) no NotebookLM. Depois, analisa  a tabela gerada e identifica quais são os principais resultados. O valor que considerares mais relevante e o tipo de efeito na aprendizagem deverá ser colocado na lacuna do capítulo.",
+                hint: "Olha para a tabela que a IA criou. Qual o resultado que tem um efeito médio na aprendizagem? O valor é um decimal entre 0.4 e 0.6.",
+                answers: ["0.49 cognitive","0.49 cognitiva",".49 cognitive",".49 cognitiva", "0,49 cognitive","0,49 cognitiva"], 
+            },
+      {
+    id: 3,
+    title: "CAPÍTULO 4: IMPACTO NO PROCESSO PEDAGÓGICO",
+    docText: `A revisão sistemática da literatura sobre o ensino das ciências revela que a integração de tecnologias educativas tem aumentado de forma significativa nos últimos anos.
+
+Ao redigir este parágrafo, iniciaste a citação de um artigo recente sobre gamificação, mas a frase ficou incompleta.  
+Na tentativa de tornar a aprendizagem mais eficaz, os investigadores têm recorrido à gamificação na educação, apontando o ___________ como elemento central desse processo.`,
+
+    orientadorNote: "Esta frase não está terminada. Falta aqui um conceito central. O termo em falta não é genérico nem interpretativo — é um conceito-chave claramente assumido pelos autores como objetivo da gamificação no processo educativo. Identifica a palavra exata e completa corretamente o parágrafo da tese, procurando na tua base de dados de artigos",
+
+    hint: "O conceito descreve o estado de envolvimento ativo do aluno no processo de aprendizagem",
+
+    // Respostas em minúsculas para o validador
+    
+    answers: ["envolvimento", "engajamento", "engagement"],
+    type: "exact"
+},
+{
+    id: 4,
+    title: "CAPÍTULO 4.1: VERIFICAÇÃO DE FONTE (GROUNDING)",
+    docText: `Para garantir a integridade académica, não basta citar o conceito, temos de saber quem sustenta esta informação
+    ___________.`,
+    orientadorNote: "Uma vez identificado o conceito, é necessário verificar a fonte para assegurar que a informação não corresponde a uma alucinação. No NotebookLM, clica no número da citação ou verifica o topo da primeira página do PDF para identificar os autores deste mapeamento sistemático.",
+    hint: "Os nomes aparecem logo abaixo do título do artigo. A resposta deve ser 'Autor 1 & Autor 2.",
+    answers: ["costa", 
+        "kalogiannakis", 
+        "kalogiannakis et al", 
+        "kalogiannakis et al.",
+        "kalogiannakis, papadakis & zourmpakis"], 
+    type: "exact"
+},
+ {
+      id: 5,
+      title: "CAPÍTULO 5: ATUALIZAÇÃO BIBLIOGRÁFICA (WEB)",
+      docText: `A investigação nesta área evolui rapidamente. Precisamos de uma fonte ainda mais recente (2024-2025).
+
+Título e Ano: "___________".`,
+      orientadorNote: "Usa a pesquisa do Notebook para encontrar um artigo de 2024 ou 2025 sobre 'Gamification'. Cola o título e o ano.",
+      hint: "O sistema aceita qualquer resposta que contenha o ano 2024 ou 2025.",
+      answers: ["2024", "2025"],
+      type: "contains"
+    }
+    
+        ];
+
+        function App() {
+            const [gameState, setGameState] = useState('INTRO'); // INTRO, PLAYING, WON
+            const [currentLevel, setCurrentLevel] = useState(0);
+            const [input, setInput] = useState("");
+            const [error, setError] = useState("");
+            const [showHint, setShowHint] = useState(false);
+            const [timeLeft, setTimeLeft] = useState(60 * 60); // 60 minutos
+
+            // Timer
+            useEffect(() => {
+                let timer;
+                if (gameState === 'PLAYING' && timeLeft > 0) {
+                    timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
+                }
+                return () => clearInterval(timer);
+            }, [gameState, timeLeft]);
+
+            const formatTime = (seconds) => {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            };
+
+            const startGame = () => setGameState('PLAYING');
+
+            const checkAnswer = (e) => {
+                e.preventDefault();
+                const lvl = LEVELS[currentLevel];
+                const cleanInput = input.toLowerCase().trim().replace(/\s+/g, ' ');
+                
+                if (lvl.answers.includes(cleanInput)) {
+                    setInput("");
+                    setError("");
+                    setShowHint(false);
+                    if (currentLevel + 1 < LEVELS.length) {
+                        setCurrentLevel(currentLevel + 1);
+                    } else {
+                        setGameState('WON');
+                    }
+                } else {
+                    setError("Valor incorreto. Verifica a tua análise da tabela ou do texto.");
+                }
+            };
+
+            // --- ECRÃ 1: NARRATIVA E CONTEXTO ---
+            if (gameState === 'INTRO') {
+                return (
+                    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gray-900 text-white relative overflow-hidden">
+                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                        
+                        <div className="max-w-3xl w-full z-10 text-center space-y-8 fade-in">
+                            <div className="inline-block p-4 rounded-full bg-red-900/30 border border-red-500 mb-4 animate-pulse">
+                                <svg className="w-12 h-12 text-red-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            </div>
+                            
+                            <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">
+                                ESCAPE THE THESIS
+                            </h1>
+                            
+                          <div className="bg-gray-800/80 backdrop-blur border-l-4 border-red-500 p-8 rounded-lg text-left shadow-2xl">
+    <h2 className="text-2xl font-bold mb-4 text-red-400">
+        CONTEXTO DA MISSÃO
+    </h2>
+
+    <p className="text-lg leading-relaxed text-gray-300 mb-4">
+        <strong className="text-white">
+            Hoje é o dia da submissão final da tua tese. Faltam apenas 60 minutos para a plataforma encerrar.
+        </strong>
+    </p>
+
+    <p className="text-lg leading-relaxed text-gray-300 mb-4">
+        O teu orientador, Professor Silva, desapareceu misteriosamente durante o dia.
+        O telemóvel encontra-se desligado e não responde a e-mails.
+        No gabinete, encontras apenas o <strong className="text-white">rascunho incompleto da tese</strong>,
+        com notas soltas, comentários interrompidos e referências por confirmar.
+    </p>
+
+    <p className="text-lg leading-relaxed text-gray-300 mb-4">
+        ⚠️ <strong className="text-red-400">PROBLEMA: </strong>  
+        Faltam dados, enquadramento teórico e validação de referências essenciais para garantir a coerência científica do trabalho.
+    </p>
+
+    <p className="text-lg leading-relaxed text-gray-300">
+        Para conseguires submeter a tese dentro do prazo, terás de recorrer de forma <strong className="text-white">
+        crítica e estratégica à Inteligência Artificial</strong> para analisar informação,
+        sintetizar conceitos e tomar decisões fundamentadas.
+        <br />
+        <span className="text-red-400 font-semibold">
+            O tempo é limitado. Cada decisão conta.
+        </span>
+    </p>
+</div>
+
+                            <button 
+                                onClick={startGame}
+                                className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-red-600 font-inter rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600 ring-offset-gray-900 w-full md:w-auto"
+                            >
+                                <span>INICIAR RECUPERAÇÃO (60 MIN)</span>
+                                <svg className="w-5 h-5 ml-2 -mr-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+
+            // --- ECRÃ 3: VITÓRIA ---
+            if (gameState === 'WON') {
+                return (
+                    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-green-900 text-white">
+                        <div className="max-w-2xl w-full bg-white text-gray-900 p-10 rounded-xl shadow-2xl text-center fade-in">
+                            <div className="flex justify-center mb-6">
+                                <div className="bg-green-100 p-4 rounded-full">
+                                    <svg className="w-16 h-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                </div>
+                            </div>
+                            <h2 className="text-4xl font-black mb-4">TESE SUBMETIDA!</h2>
+           <div className="space-y-6 text-lg leading-relaxed text-gray-700 mb-10 text-left border-l-4 border-emerald-500 pl-6 py-2 bg-emerald-50/50 rounded-r-xl">
+            <p className="font-medium italic">Faltavam exatamente {formatTime(timeLeft)} para o encerramento da plataforma.</p>
+            <p>No mesmo instante, chega um e-mail do Orientador:</p>
+            <blockquote className="italic font-bold text-emerald-800 py-2">
+              "Excelente trabalho. A análise foi rigorosa e as decisões bem fundamentadas. Submete."
+            </blockquote>
+            <p className="font-black text-emerald-600 uppercase tracking-widest text-sm">A tese é enviada. Missão concluída.</p>
+          </div>
+                            <div className="bg-gray-100 p-6 rounded-lg font-mono text-left">
+                                <p className="text-green-700 font-bold">STATUS: APROVADO</p>
+                                <p className="text-gray-600">TEMPO RESTANTE: {formatTime(timeLeft)}</p>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            // --- ECRÃ 2: JOGO ---
+            const lvl = LEVELS[currentLevel];
+
+            return (
+                <div className="min-h-screen bg-gray-100 flex flex-col font-sans text-gray-900">
+                    <div className="bg-gray-900 text-white p-4 shadow-lg sticky top-0 z-50">
+                        <div className="max-w-7xl mx-auto flex justify-between items-center">
+                            <div className="flex items-center gap-3">
+                                <span className="bg-red-600 text-xs font-bold px-2 py-1 rounded animate-pulse">RECUPERAÇÃO EM CURSO</span>
+                                <span className="font-mono text-lg font-bold">Rascunho_Final_vfinalissima_mesmofinal.docx</span>
+                            </div>
+                            <div className="font-mono text-2xl font-bold tabular-nums text-red-400">
+                                {formatTime(timeLeft)}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex-1 max-w-7xl mx-auto w-full p-4 md:p-8 grid lg:grid-cols-2 gap-8">
+                        {/* COLUNA ESQUERDA: DOCUMENTO */}
+                        <div className="bg-white p-8 md:p-12 shadow-xl rounded-lg border border-gray-200 relative min-h-[500px]">
+                            <div className="absolute top-6 right-6 text-gray-100 font-black text-6xl rotate-12 select-none pointer-events-none">DRAFT</div>
+                            <div className="font-serif text-lg leading-loose text-gray-800">
+                                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 border-b pb-2">
+                                    EDITAR: {lvl.title}
+                                </h3>
+                                <div className="whitespace-pre-line">
+                                    {lvl.docText.split('___________').map((part, i, arr) => (
+                                        <span key={i}>
+                                            {part}
+                                            {i < arr.length - 1 && (
+                                                <span className="bg-yellow-200 px-2 py-1 font-mono text-yellow-800 font-bold border-b-2 border-yellow-500 mx-1">
+                                                    [LACUNA {currentLevel + 1}]
+                                                </span>
+                                            )}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* COLUNA DIREITA: ORIENTADOR */}
+                        <div className="flex flex-col gap-6">
+                            <div className="bg-blue-600 text-white p-6 rounded-lg shadow-lg relative overflow-hidden">
+                                <div className="absolute -right-4 -top-4 text-blue-500 opacity-20">
+                                    <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                </div>
+                                <div className="flex items-start gap-4 relative z-10">
+                                    <div className="w-12 h-12 rounded-full bg-blue-400 flex items-center justify-center text-2xl shrink-0 border-2 border-white">
+                                        👨‍🏫
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-blue-100 text-sm uppercase mb-1">Nota de revisão:</h4>
+                                        <p className="font-medium text-lg leading-snug">"{lvl.orientadorNote}"</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+                                <label className="block text-gray-400 text-sm font-bold mb-3 uppercase">
+                                    Inserir Correção para Lacuna {currentLevel + 1}:
+                                </label>
+                                <form onSubmit={checkAnswer} className="flex gap-3">
+                                    <input 
+                                        type="text" 
+                                        value={input}
+                                        onChange={(e) => setInput(e.target.value)}
+                                        className="flex-1 bg-gray-900 border border-gray-600 text-white px-4 py-3 rounded focus:outline-none focus:border-blue-500 font-mono text-lg"
+                                        placeholder="Escreve a resposta..."
+                                        autoFocus
+                                    />
+                                    <button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded font-bold transition-colors shadow-lg">VALIDAR</button>
+                                </form>
+                                {error && (
+                                    <div className="mt-3 text-red-400 bg-red-900/20 p-2 rounded text-sm font-bold flex items-center animate-bounce">
+                                        {error}
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="mt-auto text-center">
+                                {!showHint ? (
+                                    <button onClick={() => setShowHint(true)} className="text-gray-500 hover:text-gray-700 text-sm underline decoration-dotted">Estou bloqueado. Mostrar pista.</button>
+                                ) : (
+                                    <div className="bg-yellow-50 text-yellow-800 p-3 rounded border border-yellow-200 text-sm inline-block"><strong>💡 Pista:</strong> {lvl.hint}</div>
+                                )}
+                            </div>
+
+                            <div className="flex justify-between items-center px-2">
+                                {LEVELS.map((level, idx) => (
+                                    <div key={level.id} className="flex flex-col items-center gap-1">
+                                        <div className={`w-3 h-3 rounded-full ${idx <= currentLevel ? (idx === currentLevel ? 'bg-blue-600 ring-4 ring-blue-200' : 'bg-green-500') : 'bg-gray-300'}`}></div>
+                                        <span className="text-[10px] text-gray-500 font-bold uppercase text-center hidden md:block">Fase {level.id}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
