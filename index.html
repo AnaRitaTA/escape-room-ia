@@ -261,7 +261,7 @@ Título e Ano: "___________".`,
                         </div>
                     </div>
 
-                 <!--   <div className="flex-1 max-w-7xl mx-auto w-full p-4 md:p-8 grid lg:grid-cols-2 gap-8">
+                 <div className="flex-1 max-w-7xl mx-auto w-full p-4 md:p-8 grid lg:grid-cols-2 gap-8">
                         {/* COLUNA ESQUERDA: DOCUMENTO */}
                         <div className="bg-white p-8 md:p-12 shadow-xl rounded-lg border border-gray-200 relative min-h-[500px]">
                             <div className="absolute top-6 right-6 text-gray-100 font-black text-6xl rotate-12 select-none pointer-events-none">DRAFT</div>
@@ -299,45 +299,9 @@ Título e Ano: "___________".`,
                                         <p className="font-medium text-lg leading-snug">"{lvl.orientadorNote}"</p>
                                     </div>
                                 </div>
-                            </div> -->
-                            <div class="flex-1 max-w-7xl mx-auto w-full p-4 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-    
-    <div class="bg-white p-6 md:p-12 shadow-xl rounded-lg border border-gray-200 relative min-h-[300px] md:min-h-[500px] w-full">
-        <div class="absolute top-6 right-6 text-gray-100 font-black text-4xl md:text-6xl rotate-12 select-none pointer-events-none">DRAFT</div>
-        <div class="font-serif text-base md:text-lg leading-relaxed md:leading-loose text-gray-800">
-            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 md:mb-6 border-b pb-2">
-                EDITAR: {lvl.title}
-            </h3>
-            <div class="whitespace-pre-line break-words">
-                {lvl.docText.split('___________').map((part, i, arr) => (
-                    <span key={i}>
-                        {part}
-                        {i < arr.length - 1 && (
-                            <span className="bg-yellow-200 px-2 py-1 font-mono text-yellow-800 font-bold border-b-2 border-yellow-500 mx-1 inline-block">
-                                [LACUNA {currentLevel + 1}]
-                            </span>
-                        )}
-                    </span>
-                ))}
-            </div>
-        </div>
-    </div>
-
-    <div class="flex flex-col gap-6 w-full">
-        <div class="bg-blue-600 text-white p-5 md:p-6 rounded-lg shadow-lg relative overflow-hidden">
-            <div class="flex items-start gap-3 md:gap-4 relative z-10">
-                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-400 flex items-center justify-center text-xl md:text-2xl shrink-0 border-2 border-white">
-                    👨‍🏫
-                </div>
-                <div>
-                    <h4 className="font-bold text-blue-100 text-xs uppercase mb-1">Nota de revisão:</h4>
-                    <p className="font-medium text-base md:text-lg leading-snug">"{lvl.orientadorNote}"</p>
-                </div>
-            </div>
-        </div>
-        
-        </div>
-</div>
+                            </div> 
+                           
+            
 
                             <div className="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
                                 <label className="block text-gray-400 text-sm font-bold mb-3 uppercase">
@@ -389,3 +353,4 @@ Título e Ano: "___________".`,
 </body>
 
 </html>
+
